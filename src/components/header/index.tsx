@@ -11,6 +11,8 @@ export default function Header() {
       <br />
       <Link href="/repositories">Redirect to Repositories</Link>
       <br />
+      <Link href="/dashboard">Redirect to Dashboard</Link>
+      <br />
       <br /> <hr />
     </header>
   );

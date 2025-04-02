@@ -1,4 +1,6 @@
-// Renderização no servidor: executa no backend, funciona mesmo sem JavaScript no navegador e permite carregamento inicial mais rápido.
+import { resolve } from "path";
+
+// Server Component/Renderização no servidor: executa no backend, funciona mesmo sem JavaScript no navegador e permite carregamento inicial mais rápido.
 interface DataProps {
   id: number;
   name: string;
@@ -9,9 +11,23 @@ interface DataProps {
   watchers: number;
 }
 
+async function delayFetch(url: string, delay: number) {
+  await new Promise((resolve) => setTimeout(resolve, delay));
+  const response = await fetch(url);
+  return response.json();
+}
+/*
 async function getData() {
   const response = await fetch("https://api.github.com/users/plogicador/repos");
   return response.json();
+}
+*/
+async function getData() {
+  const data = await delayFetch(
+    "https://api.github.com/users/plogicador/repos",
+    2000
+  );
+  return data;
 }
 
 export default async function Home() {

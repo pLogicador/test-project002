@@ -1,4 +1,4 @@
-// Renderização no cliente: necessário para interatividade dinâmica, mas depende do JavaScript do navegador.
+//Client Component/Renderização no cliente: necessário para interatividade dinâmica, mas depende do JavaScript do navegador.
 
 "use client";
 

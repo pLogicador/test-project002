@@ -1,3 +1,4 @@
+import { OwnerRepo } from "@/components/OwnerRepo";
 import { resolve } from "path";
 
 // Server Component/Renderização no servidor: executa no backend, funciona mesmo sem JavaScript no navegador e permite carregamento inicial mais rápido.
@@ -9,6 +10,12 @@ interface DataProps {
   updated_at: string;
   visibility: string;
   watchers: number;
+  owner: {
+    login: string;
+    id: number;
+    avatar_url: string;
+    url: string;
+  };
 }
 
 async function delayFetch(url: string, delay: number) {
@@ -25,7 +32,7 @@ async function getData() {
 async function getData() {
   const data = await delayFetch(
     "https://api.github.com/users/plogicador/repos",
-    2000
+    0
   );
   return data;
 }
@@ -42,7 +49,11 @@ export default async function Home() {
       {data.map((item) => (
         <div key={item.id}>
           <strong>Repository: </strong> <a>{item.full_name}</a>
-          <p>visibility: {item.visibility}</p>
+          <br />
+          <OwnerRepo
+            avatar_url={item.owner.avatar_url}
+            name={item.owner.login}
+          />
           <br />
         </div>
       ))}

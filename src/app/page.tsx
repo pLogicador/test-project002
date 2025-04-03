@@ -32,7 +32,7 @@ async function getData() {
 async function getData() {
   const data = await delayFetch(
     //https://api.github.com/users/plogicador/repos
-    "https://api.github.com/ueRr/plogicador/repos",
+    "https://api.github.com/users/plogicador/repos",
     0
   );
   return data;
